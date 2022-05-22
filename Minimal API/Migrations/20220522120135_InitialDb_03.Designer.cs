@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Minimal_API.Data;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Minimal_API.Migrations
 {
     [DbContext(typeof(Minimal_APIContext))]
-    partial class Minimal_APIContextModelSnapshot : ModelSnapshot
+    [Migration("20220522120135_InitialDb_03")]
+    partial class InitialDb_03
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -59,29 +61,6 @@ namespace Minimal_API.Migrations
                     b.ToTable("Book");
                 });
 
-            modelBuilder.Entity("Minimal_API.Models.Book_Author", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<int?>("AuthorId")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("BookId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AuthorId");
-
-                    b.HasIndex("BookId");
-
-                    b.ToTable("Book_Author");
-                });
-
             modelBuilder.Entity("Minimal_API.SuperHero", b =>
                 {
                     b.Property<int>("Id")
@@ -111,21 +90,6 @@ namespace Minimal_API.Migrations
                         .HasForeignKey("AuthorId");
 
                     b.Navigation("Author");
-                });
-
-            modelBuilder.Entity("Minimal_API.Models.Book_Author", b =>
-                {
-                    b.HasOne("Minimal_API.Models.Author", "Author")
-                        .WithMany()
-                        .HasForeignKey("AuthorId");
-
-                    b.HasOne("Minimal_API.Models.Book", "Book")
-                        .WithMany()
-                        .HasForeignKey("BookId");
-
-                    b.Navigation("Author");
-
-                    b.Navigation("Book");
                 });
 #pragma warning restore 612, 618
         }

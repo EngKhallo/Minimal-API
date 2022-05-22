@@ -10,6 +10,7 @@ builder.Services.AddDbContext<Minimal_APIContext>(options =>
 builder.Services.AddCors(config => config.AddPolicy("Default", policy => policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
